@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Ahmednagar College, Ahilyanagar{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'college/css/style.css' %}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{% url 'home' %}">Ahmednagar College, Ahilyanagar</a>
+    <nav>
+      <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}on{% endif %}">Home</a>
+      <a href="{% url 'student' %}" class="{% if request.resolver_match.url_name == 'student' %}on{% endif %}">Student</a>
+      <a href="{% url 'staff' %}" class="{% if request.resolver_match.url_name == 'staff' %}on{% endif %}">Staff</a>
+      <a href="{% url 'course' %}" class="{% if request.resolver_match.url_name == 'course' %}on{% endif %}">Course</a>
+    </nav>
+  </header>
+  <main class="wrap">
+    {% for m in messages %}<div class="msg {{ m.tags }}">{{ m }}</div>{% endfor %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="foot">&copy; Ahmednagar College, Ahilyanagar. College Management System.</footer>
+</body>
+</html>

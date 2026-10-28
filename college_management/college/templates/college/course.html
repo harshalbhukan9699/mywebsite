@@ -1,0 +1,18 @@
+{% extends "college/base.html" %}
+{% block title %}Courses | Ahmednagar College{% endblock %}
+{% block content %}
+<h2 class="page-title">Courses</h2>
+<div class="split">
+  <section class="panel"><h3>Add course</h3>{% include "college/_form.html" %}</section>
+  <section class="panel wide"><h3>All courses ({{ courses|length }})</h3>
+    <div class="scroll"><table>
+      <thead><tr><th>Name</th><th>Code</th><th>Duration</th><th>Students</th></tr></thead>
+      <tbody>
+      {% for c in courses %}
+        <tr><td>{{ c.name }}</td><td>{{ c.code }}</td><td>{{ c.duration_years }} yr</td><td>{{ c.students.count }}</td></tr>
+      {% empty %}<tr><td colspan="4" class="empty">No courses yet. Add the first one using the form.</td></tr>
+      {% endfor %}
+      </tbody></table></div>
+  </section>
+</div>
+{% endblock %}

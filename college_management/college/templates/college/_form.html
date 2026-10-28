@@ -1,0 +1,12 @@
+<form method="post" class="form">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {% for f in form %}
+    <div class="row">
+      <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+      {{ f }}
+      {% for e in f.errors %}<small class="err">{{ e }}</small>{% endfor %}
+    </div>
+  {% endfor %}
+  <button type="submit" class="btn">Save</button>
+</form>

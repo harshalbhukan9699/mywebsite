@@ -1,0 +1,12 @@
+{% extends "college/base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>Ahmednagar College, Ahilyanagar</h1>
+  <p>Manage students, staff and courses in one place.</p>
+</section>
+<section class="menu">
+  <a class="menu-btn" href="{% url 'student' %}"><strong>Student</strong><span>{{ counts.student }} on record</span></a>
+  <a class="menu-btn" href="{% url 'staff' %}"><strong>Staff</strong><span>{{ counts.staff }} on record</span></a>
+  <a class="menu-btn" href="{% url 'course' %}"><strong>Course</strong><span>{{ counts.course }} on record</span></a>
+</section>
+{% endblock %}

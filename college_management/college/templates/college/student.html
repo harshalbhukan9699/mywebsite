@@ -1,0 +1,27 @@
+{% extends "college/base.html" %}
+{% block title %}Students | Ahmednagar College{% endblock %}
+{% block content %}
+<h2 class="page-title">Students</h2>
+{% if not courses %}<div class="msg warning">Add a course first on the <a href="{% url 'course' %}">Course page</a>, then you can add students to it.</div>{% endif %}
+<div class="split">
+  <section class="panel"><h3>Add student</h3>{% include "college/_form.html" %}</section>
+  <section class="panel wide">
+    <h3>Students ({{ students|length }})</h3>
+    <form method="get" class="filter">
+      <label for="course">Show course</label>
+      <select name="course" id="course" class="field" onchange="this.form.submit()">
+        <option value="">All courses</option>
+        {% for c in courses %}<option value="{{ c.id }}" {% if selected == c.id|stringformat:"s" %}selected{% endif %}>{{ c.name }}</option>{% endfor %}
+      </select>
+    </form>
+    <div class="scroll"><table>
+      <thead><tr><th>Roll no.</th><th>Name</th><th>Course</th><th>Email</th><th>Phone</th></tr></thead>
+      <tbody>
+      {% for s in students %}
+        <tr><td>{{ s.roll_no }}</td><td>{{ s.name }}</td><td>{{ s.course.name }}</td><td>{{ s.email }}</td><td>{{ s.phone }}</td></tr>
+      {% empty %}<tr><td colspan="5" class="empty">No students found. Add one using the form.</td></tr>
+      {% endfor %}
+      </tbody></table></div>
+  </section>
+</div>
+{% endblock %}

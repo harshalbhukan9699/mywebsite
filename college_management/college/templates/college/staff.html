@@ -1,0 +1,18 @@
+{% extends "college/base.html" %}
+{% block title %}Staff | Ahmednagar College{% endblock %}
+{% block content %}
+<h2 class="page-title">Staff</h2>
+<div class="split">
+  <section class="panel"><h3>Add staff member</h3>{% include "college/_form.html" %}</section>
+  <section class="panel wide"><h3>All staff ({{ staff_list|length }})</h3>
+    <div class="scroll"><table>
+      <thead><tr><th>Name</th><th>Designation</th><th>Department</th><th>Email</th><th>Phone</th></tr></thead>
+      <tbody>
+      {% for s in staff_list %}
+        <tr><td>{{ s.name }}</td><td>{{ s.designation }}</td><td>{{ s.department }}</td><td>{{ s.email }}</td><td>{{ s.phone }}</td></tr>
+      {% empty %}<tr><td colspan="5" class="empty">No staff yet. Add the first member using the form.</td></tr>
+      {% endfor %}
+      </tbody></table></div>
+  </section>
+</div>
+{% endblock %}
